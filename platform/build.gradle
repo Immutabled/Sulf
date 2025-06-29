@@ -1,0 +1,17 @@
+plugins {
+    alias libs.plugins.shadow
+}
+subprojects {
+
+    dependencies {
+        implementation project(":develop:connector")
+        implementation project(":develop:moshi")
+        implementation project(":develop:api")
+    }
+
+    tasks {
+        assemble {
+            dependsOn(shadowJar)
+        }
+    }
+}

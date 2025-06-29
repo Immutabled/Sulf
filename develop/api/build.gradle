@@ -1,0 +1,14 @@
+plugins {
+    alias libs.plugins.shadow
+}
+
+dependencies {
+    implementation project(":develop:connector")
+
+}
+
+tasks {
+    assemble {
+        dependsOn(shadowJar)
+    }
+}

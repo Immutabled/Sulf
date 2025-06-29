@@ -1,0 +1,8 @@
+plugins {
+    alias libs.plugins.shadow
+}
+
+dependencies {
+//    implementation(libs.moshi.kotlin.get())
+//    implementation(libs.moshi.adapters.get())
+}

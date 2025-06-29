@@ -1,0 +1,40 @@
+plugins {
+    alias libs.plugins.shadow
+    alias libs.plugins.bukkitPluginYAML
+}
+
+repositories {
+    maven {
+        name = "papermc"
+        url = uri("https://repo.papermc.io/repository/maven-public/")
+    }
+    maven {
+        url = 'https://repo.extendedclip.com/releases/'
+    }
+}
+
+dependencies {
+    implementation(project(":platform:spigot-events"))
+    implementation(project(":nms:nms-api"))
+    implementation(project(":nms:paper"))
+    implementation(project(":nms:purpur"))
+    compileOnly("io.papermc.paper:paper-api:1.21.5-R0.1-SNAPSHOT")
+
+    compileOnly 'me.clip:placeholderapi:2.11.6'
+
+}
+
+bukkit {
+    main = "git.immutabled.sulf.spigot.Plugin"
+    name = findProperty("plugin-name") as String ?: "null"
+    description = findProperty("plugin-description") as String ?: "null"
+    authors = ["Mides Dev Team"]
+    apiVersion = "1.20"
+    version = rootProject.version.toString()
+}
+
+tasks {
+    assemble {
+        dependsOn(shadowJar)
+    }
+}

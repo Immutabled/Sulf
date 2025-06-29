@@ -1,0 +1,12 @@
+rootProject.name = "Sulf"
+
+["spigot", "velocity", "spigot-events"].forEach {
+    include(":platform:$it")
+}
+["moshi", "connector", "api"].forEach {
+    include(":develop:$it")
+}
+
+["paper", "purpur", "nms-api"].forEach {
+    include(":nms:$it")
+}

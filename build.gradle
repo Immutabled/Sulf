@@ -1,0 +1,54 @@
+
+plugins {
+    id "java"
+    id "org.jetbrains.kotlin.jvm" version "2.1.0"
+    id 'idea'
+    id "maven-publish"
+    alias libs.plugins.shadow
+    alias libs.plugins.kapt
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/releases"
+    }
+}
+
+subprojects {
+    version = rootProject.version
+
+    apply plugin: "java"
+    apply plugin: "kotlin"
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation(libs.moshi.kotlin.get())
+        implementation(libs.moshi.adapters.get())
+
+        implementation libs.jedis.get()
+        implementation libs.okhttp.get()
+        implementation libs.retrofit.moshi.get()
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+//       kapt "com.squareup.moshi:moshi-codegen:1.15.0"
+    }
+
+    shadowJar {
+        archiveVersion.set("")
+    }
+
+
+//Automatically download dependencies source code
+    idea {
+        module {
+            downloadSources = true
+            downloadJavadoc = true // Download Javadocs
+        }
+    }
+}
